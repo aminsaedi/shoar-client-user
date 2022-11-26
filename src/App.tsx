@@ -44,10 +44,13 @@ function App() {
         <span>{city}</span>
       </Detail>
       <Main>
-        <p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(message) }} />
+        <p
+          data-testid="MESSAGE_CONTENT"
+          dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(message) }}
+        />
       </Main>
       <Detail>
-        <span>وضعیت اتصال:</span>
+        <span>وضعیت:</span>
         <span data-testid="CONNECTION_STATUS">{isConnected}</span>
       </Detail>
     </Wrapper>

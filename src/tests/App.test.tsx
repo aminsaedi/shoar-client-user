@@ -13,6 +13,8 @@ jest.mock("react-router-dom", () => ({
   }),
 }));
 
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
 let sendNewMessage: (message: string) => void;
 const socketOnMethod = (name: string, callBack: (message: string) => void) => {
   if (name === "next") sendNewMessage = callBack;
@@ -35,14 +37,14 @@ describe("client of shoar app", () => {
 
   test("should show default connection status screen in the footer section", async () => {
     render(<App />);
-    const footer = await screen.findByText(/وضعیت اتصال:/i);
+    const footer = await screen.findByText(/وضعیت:/i);
     expect(footer).toBeVisible();
   });
 
   test("Should Show default message if nothing is emitted yet", async () => {
     render(<App />);
-    const result = await screen.findByText(defaultMessage);
-    expect(result).toBeVisible();
+    const result = await screen.findByTestId("MESSAGE_CONTENT");
+    expect(result.innerHTML).toBe(defaultMessage);
   });
 
   test("Should show the correct message after calling on method", async () => {

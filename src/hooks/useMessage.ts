@@ -6,7 +6,7 @@ import {
   ServerToClientEvents,
 } from "../types";
 
-export const defaultMessage = "در انتظار <br /> ...";
+export const defaultMessage = "در انتظار <br> ...";
 
 const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io(
   "http://192.168.0.21:3000"
